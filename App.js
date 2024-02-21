@@ -6,6 +6,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 import Home from './screens/Home'
 import Matches from './screens/Matches';
+import MatchDetails from './screens/MatchDetails';
 
 export default function App() {
   return (
@@ -18,7 +19,17 @@ export default function App() {
       />
       <Stack.Screen
         name="Matches"
+        // options={{ headerShown: false }}
+
         component={Matches}
+      
+      />
+
+    <Stack.Screen
+        name="MatchDetails"
+        // options={{ headerShown: false }}
+
+        component={MatchDetails}
       
       />
     </Stack.Navigator>

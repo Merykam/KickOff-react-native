@@ -9,7 +9,9 @@ export default function Matches({ navigation, route }) {
   useEffect(() => {
     const GetAllMatches = async () => {
       try {
-        const response = await axios.get('https://api.sportmonks.com/v3/football/fixtures?include=sport;participants', { headers: { 'Authorization': "7YNOSKpNQzawdIhZYbCA0tYBwXIA3TQOa4qGiS1zTVU0lvHqlmC5G2XgPzhy" } });
+        const response = await axios.get('https://api.sportmonks.com/v3/football/fixtures?include=sport;participants;league', { headers: { 'Authorization': "7YNOSKpNQzawdIhZYbCA0tYBwXIA3TQOa4qGiS1zTVU0lvHqlmC5G2XgPzhy" } });
+        // const response = await axios.get('https://api.sofascore.com/api/v1/sport/football/scheduled-events/2024-02-21');
+
         console.log(response.data.data);
         setAllMatches(response.data.data);
       } catch (error) {
@@ -19,15 +21,22 @@ export default function Matches({ navigation, route }) {
     GetAllMatches();
   }, [])
 
-  const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => handleMatchPress(item)}>
-      <View style={styles.matchItem}>
-        {item.participants.map((p, index) => (
-          <Text key={index} style={styles.matchText1}>{p.name}</Text>
-        ))}
-      </View>
-    </TouchableOpacity>
-  );
+const renderItem = ({ item }) => (
+  <TouchableOpacity onPress={() => handleMatchPress(item, navigation)}>
+    
+    <View style={styles.matchItem}>
+    <Text style={styles.vs}>Vs</Text>
+      {item.participants.map((p, index) => (
+        <View key={index} style={styles.matchTextContainer}>
+          <ImageBackground src={p.image_path} style={styles.img}></ImageBackground>
+          <Text style={styles.matchText1}>{p.name}</Text>
+        </View>
+        
+      ))}
+    </View>
+    
+  </TouchableOpacity>
+);
   
 
   return (
@@ -38,6 +47,7 @@ export default function Matches({ navigation, route }) {
         style={styles.backgroundImage}>
         <View style={styles.overlay}>
           <Text style={styles.title}>All Matches</Text>
+          
           <FlatList
             data={matches}
             renderItem={renderItem}
@@ -50,10 +60,26 @@ export default function Matches({ navigation, route }) {
   );
 }
 
-const handleMatchPress = (match) => {
+const handleMatchPress = async(match, navigation) => {
+  console.log(match.id);
+  const id = match.id
+
+        const response = await axios.get(`https://api.sportmonks.com/v3/football/fixtures/${id}?include=state;season;round;league`, { headers: { 'Authorization': "7YNOSKpNQzawdIhZYbCA0tYBwXIA3TQOa4qGiS1zTVU0lvHqlmC5G2XgPzhy" } });
+
+        console.log(response.data.data);
+        navigation.navigate('MatchDetails', {data: response.data.data})
+ 
+
 };
 
 const styles = StyleSheet.create({
+  img:{
+    width:40,
+    height:40,
+    borderRadius:"50%"
+
+  },
+  
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover',
@@ -73,21 +99,42 @@ const styles = StyleSheet.create({
     color: 'white',
     marginBottom: 20,
   },
+
   matchItem: {
+    display:"relative",
     backgroundColor: 'rgba(255, 255, 255, 0.3)',
     padding: 10,
-    marginBottom: 10,
+    marginBottom: 18,
     borderRadius: 5,
-    display:"flex",
-    justifyContent:"space-between"
+    flex: 1,
+    flexDirection:"row",
+    justifyContent:"space-between",
+   
+
+  },
+  matchTextContainer: {
+    flexDirection:"column",
+    flex:1,
+    marginBottom: 5, 
+    // justifyContent:"space-between",
+    alignItems:"center"
+    
+
   },
   matchText1: {
     color: 'white',
     fontSize: 18,
-    fontWeight:"bold"
+    fontWeight: "bold",
+    marginStart:8
   },
-  matchText: {
-  
-   
-  },
+    vs: {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      color: 'white',
+      fontSize: 18,
+      fontWeight: "bold",
+      
+    },
+ 
 });
