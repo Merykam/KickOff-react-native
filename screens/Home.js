@@ -1,32 +1,31 @@
 import React from 'react';
 import { StatusBar, ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import img from './assets/yep.jpg';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-const Stack = createNativeStackNavigator();
-import Home from './screens/Home'
-import Matches from './screens/Matches';
+import img from '../assets/yep.jpg';
 
-export default function App() {
+export default function Home({navigation}) {
   return (
-    <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Home"
-        component={Home}
-      
-      />
-      <Stack.Screen
-        name="Matches"
-        component={Matches}
-      
-      />
-    </Stack.Navigator>
-  </NavigationContainer>
+    <View style={styles.container}>
+    <ImageBackground 
+      source={img}
+      resizeMode="cover" 
+      style={styles.backgroundImage}>
+      <View style={styles.overlay}>
+        <Text style={styles.logo}>KikOff</Text>
+        <TouchableOpacity style={styles.button} onPress={() =>navigation.navigate('Matches')}>
+          <Text style={styles.buttonText}>View Matches</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => handlePlayersPress()}>
+          <Text style={styles.buttonText}>View Players</Text>
+        </TouchableOpacity>
+      </View>
+    </ImageBackground>
+    <StatusBar style="auto" />
+  </View>
   );
 }
 
 const handleMatchesPress = () => {
+    navigation.navigate('Matches')
   
 };
 
