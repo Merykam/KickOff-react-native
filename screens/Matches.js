@@ -64,7 +64,7 @@ const handleMatchPress = async(match, navigation) => {
   console.log(match.id);
   const id = match.id
 
-        const response = await axios.get(`https://api.sportmonks.com/v3/football/fixtures/${id}?include=state;season;round;league`, { headers: { 'Authorization': "7YNOSKpNQzawdIhZYbCA0tYBwXIA3TQOa4qGiS1zTVU0lvHqlmC5G2XgPzhy" } });
+        const response = await axios.get(`https://api.sportmonks.com/v3/football/fixtures/${id}?include=state;season;round;league;Participants`, { headers: { 'Authorization': "7YNOSKpNQzawdIhZYbCA0tYBwXIA3TQOa4qGiS1zTVU0lvHqlmC5G2XgPzhy" } });
 
         console.log(response.data.data);
         navigation.navigate('MatchDetails', {data: response.data.data})
@@ -74,8 +74,8 @@ const handleMatchPress = async(match, navigation) => {
 
 const styles = StyleSheet.create({
   img:{
-    width:40,
-    height:40,
+    width:50,
+    height:50,
     borderRadius:"50%"
 
   },
@@ -127,14 +127,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginStart:8
   },
-    vs: {
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      color: 'white',
-      fontSize: 18,
-      fontWeight: "bold",
-      
-    },
+  vs: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    color: 'white',
+    fontSize: 23,
+    fontWeight: "bold",
+    
+  },
  
 });

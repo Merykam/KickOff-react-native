@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StatusBar, ImageBackground, StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
+import {ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import img from '../assets/ggg.jpg';
 import axios from 'axios';
 
@@ -8,14 +8,25 @@ export default function MatchDetails({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <ImageBackground
+      {/* <ImageBackground
         source={img}
         resizeMode="cover"
         style={styles.imageBackground}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
           <Text style={styles.backButtonText}>Back</Text>
         </TouchableOpacity>
-      </ImageBackground>
+      </ImageBackground> */}
+       <View style={styles.containImages}>
+      {data.participants.map((p)=>(
+            
+                <View> 
+                <ImageBackground style={styles.imageBackground} src={p.image_path} ></ImageBackground>
+
+              
+            </View>
+      ))}
+        </View>
+     
       <View style={styles.infoContainer}>
         <Text style={styles.title}>Match Details</Text>
         <Text style={styles.info}><Text style={styles.smallTitle}>Participants</Text>: {data.name}</Text>
@@ -29,6 +40,14 @@ export default function MatchDetails({ navigation, route }) {
 }
 
 const styles = StyleSheet.create({
+containImages:{
+    // flex: 1,
+    marginTop:20,
+    flexDirection:"row",
+    justifyContent:"space-between",
+
+  
+},
 smallTitle:{
     fontWeight:"bold"
     },
@@ -37,9 +56,13 @@ smallTitle:{
     backgroundColor: '#fff',
   },
   imageBackground: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    width:197,
+    height:300,
+    resizeMode:"cover",
+    // flex: 1,
+    // justifyContent: 'flex-end',
+    // alignItems: 'center',
+ 
     padding: 20,
   },
   backButton: {
@@ -53,9 +76,10 @@ smallTitle:{
     fontWeight: 'bold',
   },
   infoContainer: {
-    flex: 0.6,
+    flex: 1,
+    // backgroundColor: "#0C0F4C",
     padding: 20,
-    backgroundColor:"#0C0F4C"
+    // backgroundColor:"#0C0F4C"
   },
   title: {
     fontSize: 24,
@@ -67,6 +91,6 @@ smallTitle:{
   info: {
     fontSize: 18,
     marginBottom: 10,
-    color:"white"
+    // color:"white"
   },
 });
