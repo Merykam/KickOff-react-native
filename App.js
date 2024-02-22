@@ -7,10 +7,14 @@ const Stack = createNativeStackNavigator();
 import Home from './screens/Home'
 import Matches from './screens/Matches';
 import MatchDetails from './screens/MatchDetails';
+import Players from './screens/Players';
+import store from './redux/store'
+import { Provider } from 'react-redux'
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <Provider store={store}>
+          <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen
         name="Home"
@@ -32,8 +36,16 @@ export default function App() {
         component={MatchDetails}
       
       />
+
+    <Stack.Screen
+        name="Players"
+        component={Players}
+      
+      />
     </Stack.Navigator>
   </NavigationContainer>
+  </Provider>
+
   );
 }
 

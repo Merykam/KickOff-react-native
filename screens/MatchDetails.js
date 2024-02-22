@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import img from '../assets/ggg.jpg';
+import img from '../assets/yep.jpg';
 import axios from 'axios';
 
 export default function MatchDetails({ navigation, route }) {
@@ -8,6 +8,10 @@ export default function MatchDetails({ navigation, route }) {
 
   return (
     <View style={styles.container}>
+         {/* <ImageBackground
+        source={img}
+        resizeMode="cover"
+        style={styles.backgroundImage}> */}
       {/* <ImageBackground
         source={img}
         resizeMode="cover"
@@ -26,20 +30,32 @@ export default function MatchDetails({ navigation, route }) {
             </View>
       ))}
         </View>
-     
+   
       <View style={styles.infoContainer}>
+      <TouchableOpacity>
         <Text style={styles.title}>Match Details</Text>
         <Text style={styles.info}><Text style={styles.smallTitle}>Participants</Text>: {data.name}</Text>
         <Text style={styles.info}><Text style={styles.smallTitle}>State</Text>: {data.state.name}</Text>
         <Text style={styles.info}><Text style={styles.smallTitle}>Saison</Text>: {data.season.name}</Text>
         <Text style={styles.info}><Text style={styles.smallTitle}>Round</Text>: {data.round.name}</Text>
         <Text style={styles.info}><Text style={styles.smallTitle}>Result</Text>: {data.result_info}</Text>
+        </TouchableOpacity>
       </View>
+      
+
+      {/* </ImageBackground> */}
     </View>
+
+
   );
 }
 
 const styles = StyleSheet.create({
+backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+},
 containImages:{
     // flex: 1,
     marginTop:20,
@@ -76,16 +92,21 @@ smallTitle:{
     fontWeight: 'bold',
   },
   infoContainer: {
-    flex: 1,
+    // flex: 1,
     // backgroundColor: "#0C0F4C",
     padding: 20,
+    marginTop:20,
     // backgroundColor:"#0C0F4C"
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    padding: 10,
+    marginBottom: 18,
+    borderRadius: 5,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    color:"white",
+    // color:"white",
  
   },
   info: {

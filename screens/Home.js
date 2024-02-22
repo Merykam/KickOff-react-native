@@ -14,7 +14,7 @@ export default function Home({navigation}) {
         <TouchableOpacity style={styles.button} onPress={() =>navigation.navigate('Matches')}>
           <Text style={styles.buttonText}>View Matches</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => handlePlayersPress()}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Players')}>
           <Text style={styles.buttonText}>View Players</Text>
         </TouchableOpacity>
       </View>
