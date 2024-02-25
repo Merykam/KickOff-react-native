@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar, ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import img from '../assets/welcome.jpg';
+import img from '../assets/yep.jpg';
 
 export default function Home({navigation}) {
   return (
@@ -10,8 +10,8 @@ export default function Home({navigation}) {
       resizeMode="cover" 
       style={styles.backgroundImage}>
       <View style={styles.overlay}>
-        {/* <Text style={styles.logo}>KikOff</Text> */}
-        <TouchableOpacity style={styles.button} onPress={() =>navigation.navigate('Matches1')}>
+        <Text style={styles.logo}>KikOff</Text>
+        <TouchableOpacity style={styles.button} onPress={() =>navigation.navigate('Matches')}>
           <Text style={styles.buttonText}>View Matches</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Players')}>
@@ -36,18 +36,15 @@ const handlePlayersPress = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  
   },
   backgroundImage: {
     flex: 1,
-     resizeMode: 'cover',
-    
+    resizeMode: 'cover',
+    justifyContent: 'center',
   },
   overlay: {
-    justifyContent: 'center',
-    alignItems:"center",
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+    backgroundColor: 'rgba(0,0,0,0.6)', 
+    padding: 20,
   },
   logo: {
     fontSize: 40,
@@ -57,17 +54,16 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    backgroundColor: '#0B779F',
+    backgroundColor: '#fff',
     paddingVertical: 15,
     paddingHorizontal: 30,
-    borderRadius: 12,
+    borderRadius: 25,
     marginBottom: 20,
-    width:  300,
     alignItems: 'center',
   },
   buttonText: {
-    fontSize: 23,
+    fontSize: 18,
     fontWeight: 'bold',
-    color: 'white',
+    color: '#333',
   },
 });

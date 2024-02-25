@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ImageBackground } from 'react-native';
 import img from '../assets/welcome.jpg';
-import Navigationbare from './navigationbare';
+import Navigationbare from './navigationbare'
 
-const MatchDetails = ({ navigation, route }) => {
-    const data = route.params.data;
-
+const PlayerDetails = ({ navigation, route }) => {
+    const player = route.params.data;
+  
     return (
         <ImageBackground 
             source={img}
@@ -14,32 +14,34 @@ const MatchDetails = ({ navigation, route }) => {
             <View style={styles.overlay} />
             <View style={styles.container}>
                 <View style={styles.content}>
-                    <View style={styles.participantsContainer}>
-                        {data.participants.map((p, index) => (
-                            <Image key={index} source={{ uri: p.image_path }} style={styles.participantImage} />
-                        ))}
+                    <View style={styles.playerContainer}>
+                        <Image source={{ uri: player.image_path }} style={styles.playerImage} />
+                        <Text style={styles.playerName}>{player.display_name}</Text>
                     </View>
                     <View style={styles.detailsContainer}>
-                        <Text style={styles.title}>Match Details</Text>
                         <View style={styles.detailRow}>
-                            <Text style={styles.label}>Participants:</Text>
-                            <Text style={styles.value}>{data.name}</Text>
+                            <Text style={styles.label}>Common Name:</Text>
+                            <Text style={styles.value}>{player.common_name}</Text>
                         </View>
                         <View style={styles.detailRow}>
-                            <Text style={styles.label}>State:</Text>
-                            <Text style={styles.value}>{data.state.name}</Text>
+                            <Text style={styles.label}>Date of Birth:</Text>
+                            <Text style={styles.value}>{player.date_of_birth}</Text>
                         </View>
                         <View style={styles.detailRow}>
-                            <Text style={styles.label}>Season:</Text>
-                            <Text style={styles.value}>{data.season.name}</Text>
+                            <Text style={styles.label}>Country:</Text>
+                            <Text style={styles.value}>{player.country.name}</Text>
                         </View>
                         <View style={styles.detailRow}>
-                            <Text style={styles.label}>Round:</Text>
-                            <Text style={styles.value}>{data.round.name}</Text>
+                            <Text style={styles.label}>Nationality:</Text>
+                            <Text style={styles.value}>{player.nationality.name}</Text>
                         </View>
                         <View style={styles.detailRow}>
-                            <Text style={styles.label}>Result:</Text>
-                            <Text style={styles.value}>{data.result_info}</Text>
+                            <Text style={styles.label}>Height:</Text>
+                            <Text style={styles.value}>{player.height} cm</Text>
+                        </View>
+                        <View style={styles.detailRow}>
+                            <Text style={styles.label}>Weight:</Text>
+                            <Text style={styles.value}>{player.weight} kg</Text>
                         </View>
                     </View>
                 </View>
@@ -66,24 +68,23 @@ const styles = StyleSheet.create({
     content: {
         width: '80%',
     },
-    participantsContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+    playerContainer: {
+        alignItems: 'center',
         marginBottom: 20,
     },
-    participantImage: {
+    playerImage: {
         width: 120,
         height: 120,
         borderRadius: 60,
+        marginBottom: 10,
+    },
+    playerName: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: 'white',
     },
     detailsContainer: {
         width: '100%',
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20,
-        color: 'white',
     },
     detailRow: {
         flexDirection: 'row',
@@ -96,9 +97,9 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     value: {
-        fontSize: 18,
+        fontSize: 20,
         color: 'white',
     },
 });
 
-export default MatchDetails;
+export default PlayerDetails;

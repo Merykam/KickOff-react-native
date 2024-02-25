@@ -10,7 +10,6 @@ export default function Matches({ navigation, route }) {
     const GetAllMatches = async () => {
       try {
         const response = await axios.get('https://api.sportmonks.com/v3/football/fixtures?include=sport;participants;league', { headers: { 'Authorization': "7YNOSKpNQzawdIhZYbCA0tYBwXIA3TQOa4qGiS1zTVU0lvHqlmC5G2XgPzhy" } });
-        // const response = await axios.get('https://api.sofascore.com/api/v1/sport/football/scheduled-events/2024-02-21');
 
         console.log(response.data.data);
         setAllMatches(response.data.data);
@@ -65,7 +64,7 @@ const handleMatchPress = async(match, navigation) => {
   const id = match.id
 
         const response = await axios.get(`https://api.sportmonks.com/v3/football/fixtures/${id}?include=state;season;round;league;Participants`, { headers: { 'Authorization': "7YNOSKpNQzawdIhZYbCA0tYBwXIA3TQOa4qGiS1zTVU0lvHqlmC5G2XgPzhy" } });
-
+        
         console.log(response.data.data);
         navigation.navigate('MatchDetails', {data: response.data.data})
  

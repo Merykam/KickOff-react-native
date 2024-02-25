@@ -5,29 +5,46 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 import Home from './screens/Home'
+import Matches1 from './screens/Matches1'
 import Matches from './screens/Matches';
 import MatchDetails from './screens/MatchDetails';
 import Players from './screens/Players';
 import store from './redux/store'
 import { Provider } from 'react-redux'
+import Welcome from './screens/welcome'
+import PlayerDetails from './screens/PlayerDetails'
+import Navigationbare from './screens/navigationbare'
 
 export default function App() {
   return (
     <Provider store={store}>
           <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen
-        name="Home"
-        component={Home}
+    <Stack.Screen
+        name="Welcome"
+        component={Welcome}
+        options={{ headerShown: false }}
       
       />
       <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{ headerShown: false }}
+      
+      />
+        <Stack.Screen
+        name="Matches1"
+        component={Matches1}
+        options={{ headerShown: false }}
+      
+      />
+      {/* <Stack.Screen
         name="Matches"
         // options={{ headerShown: false }}
 
         component={Matches}
       
-      />
+      /> */}
 
     <Stack.Screen
         name="MatchDetails"
@@ -40,9 +57,29 @@ export default function App() {
     <Stack.Screen
         name="Players"
         component={Players}
+        // options={{ headerShown: false }}
+      
+      />
+
+<Stack.Screen
+        name="PlayerDetails"
+        options={{ headerShown: false }}
+
+        component={PlayerDetails}
+      
+      />
+
+      
+    <Stack.Screen
+        name="navigationbare"
+        component={Navigationbare}
+        // options={{ headerShown: false }}
       
       />
     </Stack.Navigator>
+
+      
+
   </NavigationContainer>
   </Provider>
 
