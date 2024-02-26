@@ -6,7 +6,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 import Home from './screens/Home'
 import Matches1 from './screens/Matches1'
-import Matches from './screens/Matches';
 import MatchDetails from './screens/MatchDetails';
 import Players from './screens/Players';
 import store from './redux/store'
@@ -38,27 +37,16 @@ export default function App() {
         options={{ headerShown: false }}
       
       />
-      {/* <Stack.Screen
-        name="Matches"
-        // options={{ headerShown: false }}
-
-        component={Matches}
-      
-      /> */}
 
     <Stack.Screen
         name="MatchDetails"
-        // options={{ headerShown: false }}
-
         component={MatchDetails}
       
       />
 
     <Stack.Screen
         name="Players"
-        component={Players}
-        // options={{ headerShown: false }}
-      
+        component={Players}  
       />
 
 <Stack.Screen
@@ -73,7 +61,6 @@ export default function App() {
     <Stack.Screen
         name="navigationbare"
         component={Navigationbare}
-        // options={{ headerShown: false }}
       
       />
     </Stack.Navigator>
@@ -86,13 +73,6 @@ export default function App() {
   );
 }
 
-const handleMatchesPress = () => {
-  
-};
-
-const handlePlayersPress = () => {
-  
-};
 
 const styles = StyleSheet.create({
   container: {

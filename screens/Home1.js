@@ -24,14 +24,7 @@ export default function Home({navigation}) {
   );
 }
 
-const handleMatchesPress = () => {
-    navigation.navigate('Matches')
-  
-};
 
-const handlePlayersPress = () => {
-  
-};
 
 const styles = StyleSheet.create({
   container: {

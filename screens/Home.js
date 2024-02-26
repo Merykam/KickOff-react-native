@@ -10,7 +10,6 @@ export default function Home({navigation}) {
       resizeMode="cover" 
       style={styles.backgroundImage}>
       <View style={styles.overlay}>
-        {/* <Text style={styles.logo}>KikOff</Text> */}
         <TouchableOpacity style={styles.button} onPress={() =>navigation.navigate('Matches1')}>
           <Text style={styles.buttonText}>View Matches</Text>
         </TouchableOpacity>
@@ -24,14 +23,7 @@ export default function Home({navigation}) {
   );
 }
 
-const handleMatchesPress = () => {
-    navigation.navigate('Matches')
-  
-};
 
-const handlePlayersPress = () => {
-  
-};
 
 const styles = StyleSheet.create({
   container: {

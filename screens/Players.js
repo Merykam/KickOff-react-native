@@ -8,7 +8,7 @@ import Navigationbare from './navigationbare'
 
 export default function Players({ navigation }) {
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [ searchQuery, setSearchQuery] = useState('');
   const players = useSelector((state) => state.player.value);
   const dispatch = useDispatch();
   
