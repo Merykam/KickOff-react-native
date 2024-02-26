@@ -1,10 +1,37 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ImageBackground } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons'; 
 import img from '../assets/welcome.jpg';
 import Navigationbare from './navigationbare';
+import { useSelector, useDispatch } from 'react-redux';
+import { setMatches } from '../redux/matchReducer';
+import axios from 'axios';
 
 const MatchDetails = ({ navigation, route }) => {
     const data = route.params.data;
+    const dispatch = useDispatch();
+    
+
+
+    const favoritmatches = useSelector((state) => state.favoritmatches.value);
+
+    console.log(favoritmatches);
+    
+
+    const handleFavoriteMatches =async (data) => {
+        console.log("this is the favorit data 0");
+        console.log(data.id);
+        const id = data.id
+      
+        const response = await axios.get(`https://api.sportmonks.com/v3/football/fixtures/${id}?include=state;season;round;league;Participants`, { headers: { 'Authorization': "7YNOSKpNQzawdIhZYbCA0tYBwXIA3TQOa4qGiS1zTVU0lvHqlmC5G2XgPzhy" } });
+              console.log("this is the favorit data");
+              console.log(response.data.data);
+           
+              dispatch(setMatches(response.data.data))
+              
+      
+      };
+    
 
     return (
         <ImageBackground 
@@ -13,6 +40,8 @@ const MatchDetails = ({ navigation, route }) => {
             style={styles.backgroundImage}>
             <View style={styles.overlay} />
             <View style={styles.container}>
+                {/* Adding the favorite icon at the top */}
+                <FontAwesome onPress={()=>{handleFavoriteMatches(data)}} name="heart" size={24} color="red" style={styles.favoriteIcon} />
                 <View style={styles.content}>
                     <View style={styles.participantsContainer}>
                         {data.participants.map((p, index) => (
@@ -62,6 +91,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        position: 'relative',
     },
     content: {
         width: '80%',
@@ -75,6 +105,12 @@ const styles = StyleSheet.create({
         width: 120,
         height: 120,
         borderRadius: 60,
+    },
+    favoriteIcon: {
+        position: 'absolute',
+        top: 20, 
+        left: 20, 
+        zIndex: 1, 
     },
     detailsContainer: {
         width: '100%',

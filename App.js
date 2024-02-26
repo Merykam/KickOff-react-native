@@ -13,6 +13,7 @@ import { Provider } from 'react-redux'
 import Welcome from './screens/welcome'
 import PlayerDetails from './screens/PlayerDetails'
 import Navigationbare from './screens/navigationbare'
+import FavoriteMatchCard from './screens/favoris'
 
 export default function App() {
   return (
@@ -52,7 +53,7 @@ export default function App() {
 <Stack.Screen
         name="PlayerDetails"
         options={{ headerShown: false }}
-
+        
         component={PlayerDetails}
       
       />
@@ -62,6 +63,11 @@ export default function App() {
         name="navigationbare"
         component={Navigationbare}
       
+      />
+
+<Stack.Screen
+        name="favoris"
+        component={FavoriteMatchCard}  
       />
     </Stack.Navigator>
 

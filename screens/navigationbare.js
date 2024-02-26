@@ -14,6 +14,10 @@ const BottomNavigationBar = ({ navigation }) => {
       <TouchableOpacity onPress={() => navigation.navigate('Players')} style={styles.iconContainer}>
         <MaterialCommunityIcons name="account" size={30} color="black" />
       </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => navigation.navigate('favoris')} style={styles.iconContainer}>
+        <MaterialCommunityIcons name="heart" size={30} color="black" />
+      </TouchableOpacity>
     </View>
   );
 };

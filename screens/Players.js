@@ -12,8 +12,6 @@ export default function Players({ navigation }) {
   const players = useSelector((state) => state.player.value);
   const dispatch = useDispatch();
   
-  
-  console.log(players);
 
   useEffect(() => {
     const GetAllPlayers = async () => {
@@ -29,9 +27,9 @@ export default function Players({ navigation }) {
     GetAllPlayers();
   }, []);
 
-  const filteredPlayers = players.filter(player =>
-    player.display_name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // const filteredPlayers = players.filter(player =>
+  //   player.display_name.toLowerCase().includes(searchQuery.toLowerCase())
+  // );
 
   const renderPlayerItem = ({ item }) => {
     return (
@@ -57,13 +55,13 @@ export default function Players({ navigation }) {
     navigation.navigate('PlayerDetails', {data: response.data.data});
   };
 
-  if (loading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <Text>Loading...</Text>
-      </View>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <View style={styles.loadingContainer}>
+  //       <Text>Loading...</Text>
+  //     </View>
+  //   );
+  // }
 
   return (
     <View style={styles.container}>
